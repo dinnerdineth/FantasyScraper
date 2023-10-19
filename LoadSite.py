@@ -29,20 +29,24 @@ def espn_login():
   driver.get(url)
   
   login_button = driver.find_element("xpath",'//*[@id="sideLogin-left-rail"]/button[2]')
+  #login_button = driver.find_element("link text","Log In")
+  
   login_button.click()
   
   #enter email
   driver.implicitly_wait(2)
-  address_box = driver.find_element("xpath",'//*[@id="InputIdentityFlowValue"]')
-  address_box.Keys(un)
+  address_box = WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.NAME,'Email')))
+  #address_box = WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH,'//*[@id="root"]/div[3]/div/div[2]/div/div/form/label/div/label')))
+  #address_box = driver.find_element("xpath",'//*[@id="root"]/div[3]/div/div[2]/div/div/form/label')
+  address_box.send_keys(un)
   
   continue_button = driver.find_element("xpath",'//*[@id="BtnSubmit"]')
   continue_button.Click()
   
   driver.implicitly_wait(2)
   pw_box = driver.find_element("xpath",'//*[@id="InputPassword"]')
-  pw_box.keys(pw)
-  pw_box.keys("[Enter]")
+  pw_box.send_keys(pw)
+  pw_box.send_keys("[Enter]")
   
   
   
