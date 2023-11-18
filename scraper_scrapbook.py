@@ -44,5 +44,12 @@ except NoSuchElementException:
   blank_name = "NaN"  
 print(blank_name)
 
+#Comparing xpaths for position and name
+#Row 1 = position
+#//*[@id="fitt-analytics"]/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[1]/tbody/tr[11]/td[1]/div
+
+#Row 2 = Name
+#//*[@id="fitt-analytics"]/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[1]/tbody/tr[11]/td[2]/div/div/div[2]/div/div[1]
+
 driver.quit()
 
