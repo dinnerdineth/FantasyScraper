@@ -27,7 +27,7 @@ def batter_scraper(driver,batters):
     
     end_time = time.perf_counter()
     for_loop_runtime = end_time - start_time
-    print("%s took %s to scrape" % (player_name,for_loop_runtime))
+    #print("%s took %s to scrape" % (player_name,for_loop_runtime))
   return batters
 
 def pitcher_scraper(driver,pitchers):
@@ -43,16 +43,17 @@ def pitcher_scraper(driver,pitchers):
     
     end_time = time.perf_counter()
     for_loop_runtime = end_time - start_time
-    print("%s took %s to scrape" % (player_name,for_loop_runtime))
+    #print("%s took %s to scrape" % (player_name,for_loop_runtime))
   return pitchers
       
 
 def roster_scraper():
+  start_time = time.perf_counter()
   x = 1
   pitchers = []
   batters = []
   #Create for loop to scrape each day
-  for x in range(1,2):
+  for x in range(1,187):
     
     url = ("https://fantasy.espn.com/baseball/team?leagueId=209255785&seasonId=2023&teamId=10&scoringPeriodId=%s&statSplit=singleScoringPeriod"% x)
     driver = webdriver.Chrome()
@@ -74,6 +75,9 @@ def roster_scraper():
     
     #Close webdriver
     driver.quit()  
-    
+  
+  end_time = time.perf_counter()
+  for_loop_runtime = end_time - start_time  
+  print(for_loop_runtime)
   print(pitchers)
   print(batters)
