@@ -30,6 +30,9 @@ def batter_scraper(driver,batters):
     print("%s took %s to scrape" % (player_name,for_loop_runtime))
   return batters
 
+
+
+
 def pitcher_scraper(driver,pitchers):
   #pitchers = []
   for i in range(1,15):
@@ -69,11 +72,29 @@ def roster_scraper():
     #Perform scrape  
     batter_scraper(driver,batters)
     pitcher_scraper(driver,pitchers)
-    print(x)
-
-    
-    #Close webdriver
-    driver.quit()  
+    print(x)  
     
   print(pitchers)
   print(batters)
+  
+def pos_roster_scraper():
+  x = 1
+  pitchers = []
+  batters = []
+  #Create for loop to scrape each day
+  for x in range(1,2):
+    
+    url = ("https://fantasy.espn.com/baseball/team?leagueId=209255785&seasonId=2023&teamId=10&scoringPeriodId=%s&statSplit=singleScoringPeriod"% x)
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    driver.get(url)
+    #driver.implicitly_wait(5)
+    
+    #identify object to detect page is loaded    
+    wait = WebDriverWait(driver, 20)
+    wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="fitt-analytics"]/div/div[5]/div[2]/div[3]/div/div/div/div[1]/div[2]/div[1]/div/span')))
+    pos_batter_scraper(driver, batters)
+    
+    #Close webdriver
+    driver.quit()  
+  

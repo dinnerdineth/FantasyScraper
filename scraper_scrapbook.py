@@ -53,3 +53,31 @@ print(blank_name)
 
 driver.quit()
 
+def pos_batter_scraper(driver,batters):
+  catcher = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[1]/tbody/tr[1]/td[1]/div')
+  print(catcher.get_attribute('title'))
+  fst_bse = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[1]/tbody/tr[2]/td[1]/div')
+  print(fst_bse.get_attribute('title'))
+  
+  #row number is controlled by tr
+  
+  catcher_name = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[1]/tbody/tr[1]/td[2]/div/div/div[2]/div/div[1]')
+  print(catcher_name.get_attribute('title'))
+  fst_bse_name = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[1]/tbody/tr[2]/td[2]/div/div/div[2]/div/div[1]')
+  print(fst_bse_name.get_attribute('title'))
+  snd_bse_name = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[1]/tbody/tr[3]/td[2]/div/div/div[2]/div/div[1]')
+  print(snd_bse_name.get_attribute('title'))
+  
+  #Player name column is controlled by td
+  
+  catcher_points = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[2]/tbody/tr[1]/td/div').get_attribute('title')
+  catcher_points_val = catcher_points.strip(" points")
+  print(catcher_points_val)
+  
+  fst_bse_points = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[2]/tbody/tr[2]/td/div').get_attribute('title')
+  fst_bse_points_val = fst_bse_points.strip(" points")
+  print(fst_bse_points_val)
+  #print(fst_bse_points.get_attribute('title'))
+  
+  #Table 2, TR changes row number
+
