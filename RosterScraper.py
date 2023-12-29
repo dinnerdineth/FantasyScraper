@@ -50,6 +50,14 @@ def pitcher_scraper(driver,pitchers):
   return pitchers
       
 
+def batter_scraper_by_pos(driver,batters):
+  positions = ['C','1B','2B','3B','SS','OF','OF','OF','UTIL']
+  catcher_row = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[1]/tbody/tr[1]/td[1]/div')
+  catcher_name = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[1]/tbody/tr[1]/td[2]/div/div/div[2]/div/div[1]')
+  catcher_opp = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[1]/tbody/tr[1]/td[3]/div/div/a/span')
+  
+  #Based off the above rows the td[x] is the column number
+
 def roster_scraper():
   x = 1
   pitchers = []
