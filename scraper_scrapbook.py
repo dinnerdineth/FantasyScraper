@@ -80,4 +80,28 @@ def pos_batter_scraper(driver,batters):
   #print(fst_bse_points.get_attribute('title'))
   
   #Table 2, TR changes row number
+  
+def pos_pitcher_scraper(driver,pitchers):
+  pitcher_one_object = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[2]/div/div/table[1]/tbody/tr[1]/td[1]/div')
+  pitcher_one_title = pitcher_one_object.get_attribute('title')
+  print(pitcher_one_title)
+  pitcher_two_object = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[2]/div/div/table[1]/tbody/tr[2]/td[1]/div')
+  print(pitcher_two_object.get_attribute('title'))
+  #Tr value changes row
+      
+  pitcher_one_name_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[2]/div/div/table[1]/tbody/tr[1]/td[2]/div/div/div[2]/div/div[1]')
+  print(pitcher_one_name_obj.get_attribute('title'))
+  pitcher_two_name_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[2]/div/div/table[1]/tbody/tr[2]/td[2]/div/div/div[2]/div/div[1]')
+  print(pitcher_two_name_obj.get_attribute('title'))
+  
+  il_pitcher_one_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[2]/div/div/table[1]/tbody/tr[9]/td[1]/div')
+  print(il_pitcher_one_obj.get_attribute('title'))
+  
+  #for IL players need to get name of row x column 1 and check for title
+  # or
+  #check for blank row and end loop
+  # or check for totals title
+  totals_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[2]/div/div/table[1]/tbody/tr[8]/td[3]/div')
+  print(totals_obj.get_attribute('title'))
+  #td 3
 
