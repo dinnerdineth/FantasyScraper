@@ -58,13 +58,12 @@ def batter_scraper(driver,batters):
         points = points_obj.get_attribute('title')
         points = points.strip(" points")
         batter_dict['Points'] = points
+        
+        print(batters)
+        #print(batter_dict)
      
-    #Need to get dictionary added to dataframe
-    
-    #batter_dict_df = pd.DataFrame(data=batter_dict)
-    #print(batter_dict_df)
-    #batters = pd.concat([batters,batter_dict_df],ignore_index=True)
-    #batters.append(batter_name, ignore_index=True)
+        
+    batters = batters.append(batter_dict, ignore_index=True)
     row_num += 1
     
   # end_time = time.perf_counter()
