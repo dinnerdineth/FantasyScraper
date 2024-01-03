@@ -67,7 +67,7 @@ def batter_scraper(driver,batters):
         
     batters = batters.append(batter_dict, ignore_index=True)
     row_num += 1
-  print(batters)
+  #print(batters)
   return batters
   # end_time = time.perf_counter()
   # function_run_time = end_time - start_time
@@ -144,7 +144,7 @@ def pitcher_scraper(driver,pitchers):
   # function_run_time = end_time - start_time
   # print("Pitcher Function took %s seconds to run" % function_run_time)
   
-  print(pitchers)
+  #print(pitchers)
   return pitchers
   
 
@@ -155,7 +155,7 @@ def roster_scraper():
   pitchers = pd.DataFrame(columns=['Pitcher','IP','Hits','ER','Walks','Strike Outs','W','L','Saves','Holds','Points'])
   batters = pd.DataFrame(columns = ['Batter','Runs','Total Bases','Walks','Strike Outs','Stolen Bases','Points'])
   #Create for loop to scrape each day
-  for x in range(1,2):
+  for x in range(1,3):
     
     url = ("https://fantasy.espn.com/baseball/team?leagueId=209255785&seasonId=2023&teamId=10&scoringPeriodId=%s&statSplit=singleScoringPeriod"% x)
     driver = webdriver.Chrome()
@@ -169,11 +169,13 @@ def roster_scraper():
 
 
     #Perform scrape  
-    batter_scraper(driver,batters)
-    pitcher_scraper(driver,pitchers)
+    batters = batters.append(batter_scraper(driver,batters),ignore_index=True)
+    pitchers = pitchers.append(pitcher_scraper(driver,pitchers),ignore_index=True)
 
     
-    
+  filepath = "home/Documents/Python/Fantasy Scraper"  
+  batters.to_csv("batters.csv")
+  pitchers.to_csv("pitchers.csv")
   print(pitchers)
   print(batters)
   end_time = time.perf_counter()
