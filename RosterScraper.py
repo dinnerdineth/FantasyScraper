@@ -97,8 +97,9 @@ def pitcher_scraper(driver,pitchers):
       break
     else: #get player name and daily points total
       pitcher_dict = {'Date' : '', 'Pitcher' : '', 'IP' : 0.0, 'Hits' : 0, 'ER': 0, 'Walks' : 0, 'Strike Outs' : 0, 'W' : 0, 'L' : 0, 'Saves' : 0, 'Holds': 0, 'Points': 0}
-      pitcher_name_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[2]/div/div/table[1]/tbody/tr[%s]/td[2]/div/div/div[2]/div/div[1]' % row_num)
+      
       try:
+        pitcher_name_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[2]/div/div/table[1]/tbody/tr[%s]/td[2]/div/div/div[2]/div/div[1]' % row_num)
         pitcher_name = pitcher_name_obj.get_attribute('title')
       except NoSuchElementException:
         pitcher_name = "NaN"
@@ -178,7 +179,7 @@ def roster_scraper():
     
     #identify object to detect page is loaded    
     wait = WebDriverWait(driver, 20)
-    wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="fitt-analytics"]/div/div[5]/div[2]/div[3]/div/div/div/div[1]/div[2]/div[1]/div/span')))
+    wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="fitt-analytics"]/div/div[5]/div[2]/div[3]/div/div/div/div[1]/div[2]/div/div/span')))
 
 
     #Perform scrape  
@@ -186,6 +187,7 @@ def roster_scraper():
     #pitchers = pitchers.append(pitcher_scraper(driver,pitchers),ignore_index=True)
     batters = batter_scraper(driver, batters)
     pitchers = pitcher_scraper(driver, pitchers)
+    print(x)
 
     
   
