@@ -27,8 +27,9 @@ def batter_scraper(driver,batters):
       break
     else:
       batter_dict = {'Date' : '','Position': '', 'Batter' : '','Runs' : 0,'Total Bases' : 0,'Walks' : 0,'Strike Outs' : 0,'Stolen Bases' : 0,'Points' : 0}
-      batter_name_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[1]/tbody/tr[%s]/td[2]/div/div/div[2]/div/div[1]' %  row_num)
+      
       try:
+        batter_name_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[1]/tbody/tr[%s]/td[2]/div/div/div[2]/div/div[1]' %  row_num)
         batter_name = batter_name_obj.get_attribute('title')
       except NoSuchElementException:
         batter_name = "NaN"
