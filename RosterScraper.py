@@ -26,44 +26,48 @@ def batter_scraper(driver,batters):
       totals_row = True
       break
     else:
-      batter_dict = {'Date' : '','Batter' : '','Runs' : 0,'Total Bases' : 0,'Walks' : 0,'Strike Outs' : 0,'Stolen Bases' : 0,'Points' : 0}
+      batter_dict = {'Date' : '','Position': '', 'Batter' : '','Runs' : 0,'Total Bases' : 0,'Walks' : 0,'Strike Outs' : 0,'Stolen Bases' : 0,'Points' : 0}
       batter_name_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[1]/tbody/tr[%s]/td[2]/div/div/div[2]/div/div[1]' %  row_num)
       try:
         batter_name = batter_name_obj.get_attribute('title')
       except NoSuchElementException:
         batter_name = "NaN"
         
-      if batter_name != "NaN": #if valid player get other stats
-        batter_dict['Batter'] = batter_name
-        
-        date_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[1]/div[1]/nav/div[2]/div/div/div/div/div[1]/div/div[1]/span[1]')
-        date = date_obj.get_attribute('innerText')
-        batter_dict['Date'] = date
-        
-        runs_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/div/div[2]/table/tbody/tr[%s]/td[1]/div' % row_num)
-        runs = runs_obj.get_attribute('innerText')
-        batter_dict['Runs'] = runs
-        
-        total_base_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/div/div[2]/table/tbody/tr[%s]/td[2]/div' % row_num)
-        total_bases = total_base_obj.get_attribute('innerText')
-        batter_dict['Total Bases'] = total_bases
-        
-        walks_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/div/div[2]/table/tbody/tr[%s]/td[3]/div' % row_num)
-        walks = walks_obj.get_attribute('innerText')
-        batter_dict['Walks'] = walks
-        
-        ks_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/div/div[2]/table/tbody/tr[%s]/td[4]/div' % row_num)
-        ks = ks_obj.get_attribute('innerText')
-        batter_dict['Strike Outs'] = ks
+    if batter_name != "NaN": #if valid player get other stats
+      batter_dict['Batter'] = batter_name
+      
+      date_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[1]/thead/tr[1]/th[2]')
+      date = date_obj.get_attribute('innerText')
+      batter_dict['Date'] = date
+      
+      pos_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[1]/tbody/tr[%s]/td[1]/div' % row_num)
+      pos = pos_obj.get_attribute('innerText')
+      batter_dict['Position'] = pos
+      
+      runs_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/div/div[2]/table/tbody/tr[%s]/td[1]/div' % row_num)
+      runs = runs_obj.get_attribute('innerText')
+      batter_dict['Runs'] = runs
+      
+      total_base_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/div/div[2]/table/tbody/tr[%s]/td[2]/div' % row_num)
+      total_bases = total_base_obj.get_attribute('innerText')
+      batter_dict['Total Bases'] = total_bases
+      
+      walks_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/div/div[2]/table/tbody/tr[%s]/td[3]/div' % row_num)
+      walks = walks_obj.get_attribute('innerText')
+      batter_dict['Walks'] = walks
+      
+      ks_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/div/div[2]/table/tbody/tr[%s]/td[4]/div' % row_num)
+      ks = ks_obj.get_attribute('innerText')
+      batter_dict['Strike Outs'] = ks
 
-        sb_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/div/div[2]/table/tbody/tr[%s]/td[5]/div' % row_num)
-        sb = sb_obj.get_attribute('innerText')
-        batter_dict['Stolen Bases'] = sb
-        
-        points_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[2]/tbody/tr[%s]/td/div' % row_num)
-        points = points_obj.get_attribute('title')
-        points = points.strip(" points")
-        batter_dict['Points'] = points
+      sb_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/div/div[2]/table/tbody/tr[%s]/td[5]/div' % row_num)
+      sb = sb_obj.get_attribute('innerText')
+      batter_dict['Stolen Bases'] = sb
+      
+      points_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[2]/tbody/tr[%s]/td/div' % row_num)
+      points = points_obj.get_attribute('title')
+      points = points.strip(" points")
+      batter_dict['Points'] = points
         
         #print(batters)
         #print(batter_dict)
@@ -100,7 +104,7 @@ def pitcher_scraper(driver,pitchers):
     if pitcher_name != "NaN":
       pitcher_dict['Pitcher'] = pitcher_name
       
-      date_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[1]/div[1]/nav/div[2]/div/div/div/div/div[1]/div/div[1]/span[1]')
+      date_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[1]/thead/tr[1]/th[2]')
       date = date_obj.get_attribute('innerText')
       pitcher_dict['Date'] = date
       
@@ -161,9 +165,9 @@ def roster_scraper():
   x = 1
   #Create blank dataframes for pitchers and batters
   pitchers = pd.DataFrame(columns=['Date','Pitcher','IP','Hits','ER','Walks','Strike Outs','W','L','Saves','Holds','Points'])
-  batters = pd.DataFrame(columns = ['Date','Batter','Runs','Total Bases','Walks','Strike Outs','Stolen Bases','Points'])
+  batters = pd.DataFrame(columns = ['Date','Position','Batter','Runs','Total Bases','Walks','Strike Outs','Stolen Bases','Points'])
   #Create for loop to scrape each day
-  for x in range(1,3):
+  for x in range(1,187):
     
     url = ("https://fantasy.espn.com/baseball/team?leagueId=209255785&seasonId=2023&teamId=10&scoringPeriodId=%s&statSplit=singleScoringPeriod"% x)
     driver = webdriver.Chrome()
@@ -177,8 +181,10 @@ def roster_scraper():
 
 
     #Perform scrape  
-    batters = batters.append(batter_scraper(driver,batters),ignore_index=True)
-    pitchers = pitchers.append(pitcher_scraper(driver,pitchers),ignore_index=True)
+    #batters = batters.append(batter_scraper(driver,batters),ignore_index=True)
+    #pitchers = pitchers.append(pitcher_scraper(driver,pitchers),ignore_index=True)
+    batters = batter_scraper(driver, batters)
+    pitchers = pitcher_scraper(driver, pitchers)
 
     
   
