@@ -105,3 +105,6 @@ def pos_pitcher_scraper(driver,pitchers):
   print(totals_obj.get_attribute('title'))
   #td 3
 
+
+#Blank batter - scoring period 93
+#Blank pitcher - scoring period 54

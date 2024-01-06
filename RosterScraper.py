@@ -31,8 +31,10 @@ def batter_scraper(driver,batters):
       try:
         batter_name_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[1]/div/div/table[1]/tbody/tr[%s]/td[2]/div/div/div[2]/div/div[1]' %  row_num)
         batter_name = batter_name_obj.get_attribute('title')
+        
       except NoSuchElementException:
         batter_name = "NaN"
+        
         
     if batter_name != "NaN": #if valid player get other stats
       batter_dict['Batter'] = batter_name
@@ -101,8 +103,11 @@ def pitcher_scraper(driver,pitchers):
       try:
         pitcher_name_obj = driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div/div/div[5]/div[2]/div[3]/div/div/div/div[3]/div/div[2]/div/div/table[1]/tbody/tr[%s]/td[2]/div/div/div[2]/div/div[1]' % row_num)
         pitcher_name = pitcher_name_obj.get_attribute('title')
+        
       except NoSuchElementException:
         pitcher_name = "NaN"
+        
+        
     if pitcher_name != "NaN":
       pitcher_dict['Pitcher'] = pitcher_name
       
@@ -151,8 +156,8 @@ def pitcher_scraper(driver,pitchers):
       points = points.strip(" points")
       pitcher_dict['Points'] = points
       
-      pitchers = pitchers.append(pitcher_dict,ignore_index=True)
-      row_num += 1
+    pitchers = pitchers.append(pitcher_dict,ignore_index=True)
+    row_num += 1
       
   # end_time = time.perf_counter()
   # function_run_time = end_time - start_time
