@@ -13,7 +13,7 @@ import time
 
 #link to each day
 #scoring period goes from 1 - 186
-#https://fantasy.espn.com/baseball/team?leagueId=1561118529&teamId=8&seasonId=2024&scoringPeriodId=1
+#https://fantasy.espn.com/baseball/team?leagueId=909280170&teamId=8&seasonId=2025&scoringPeriodId=1
 
 def batter_scraper(driver,batters):
   # start_time = time.perf_counter()
@@ -176,7 +176,7 @@ def roster_scraper():
   #Create for loop to scrape each day
   for x in range(1,197):
     
-    url = ("https://fantasy.espn.com/baseball/team?leagueId=1561118529&teamId=8&seasonId=2024&scoringPeriodId=%s&statSplit=singleScoringPeriod"% x)
+    url = ("https://fantasy.espn.com/baseball/team?leagueId=909280170&teamId=1&seasonId=2025&scoringPeriodId=%s"% x)
     driver = webdriver.Chrome()
     driver.maximize_window()
     driver.get(url)
