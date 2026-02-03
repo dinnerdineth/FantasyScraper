@@ -79,7 +79,7 @@ def batter_scraper(driver,batters):
         #print(batters)
         #print(batter_dict)
      
-    batter_data = pd.DataFrame(batter_dict) 
+    batter_data = pd.DataFrame([batter_dict]) 
     batters = pd.concat([batters, batter_data], ignore_index=True) #updated append to concat
 
     row_num += 1
@@ -187,8 +187,8 @@ def roster_scraper():
     driver = webdriver.Chrome()
     driver.maximize_window()
     driver.get(url)
-    print(driver)
-    #driver.implicitly_wait(5)
+    #print(driver)
+    
     
     #identify object to detect page is loaded    
     wait = WebDriverWait(driver, 20)
@@ -198,6 +198,7 @@ def roster_scraper():
     batters = batter_scraper(driver, batters)
     pitchers = pitcher_scraper(driver, pitchers)
     print(x)
+    driver.close()
 
     
   
