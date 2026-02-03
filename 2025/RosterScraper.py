@@ -79,8 +79,9 @@ def batter_scraper(driver,batters):
         #print(batters)
         #print(batter_dict)
      
-        
-    batters = batters.append(batter_dict, ignore_index=True)
+    batter_data = pd.DataFrame(batter_dict) 
+    batters = pd.concat([batters, batter_data], ignore_index=True) #updated append to concat
+
     row_num += 1
   #print(batters)
   return batters
@@ -160,7 +161,8 @@ def pitcher_scraper(driver,pitchers):
       points = points.strip(" points")
       pitcher_dict['Points'] = points
       
-    pitchers = pitchers.append(pitcher_dict,ignore_index=True)
+    pitcher_data = pd.DataFrame([pitcher_dict])
+    pitchers = pd.concat([pitchers,pitcher_data],ignore_index=True)
     row_num += 1
       
   # end_time = time.perf_counter()
@@ -176,7 +178,8 @@ def roster_scraper():
   x = 1
   #Create blank dataframes for pitchers and batters
   pitchers = pd.DataFrame(columns=['Date','Pitcher','IP','Hits','ER','Walks','Strike Outs','W','L','Saves','Holds','Points'])
-  batters = pd.DataFrame(columns = ['Date','Position','Batter','Runs','Total Bases','Walks','Strike Outs','Stolen Bases','Points'])
+  batters = pd.DataFrame(columns = ['Date','Position','Batter','Runs','Total Bases','RBI','Walks','Strike Outs','Stolen Bases','Points'])
+
   #Create for loop to scrape each day
   for x in range(1,196):
     
@@ -204,6 +207,6 @@ def roster_scraper():
   print(batters)
   end_time = time.perf_counter()
   function_run_time = end_time - start_time
-  print("Scraping Function took %s seconds to run" % function_run_time)
+  print(f"Scraping Function took {function_run_time} seconds to run")
   
   
